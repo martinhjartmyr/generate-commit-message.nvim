@@ -4,6 +4,8 @@
 
 Generate git commit messages using Ollama's local or cloud LLMs.
 
+![](demo.gif)
+
 ## Features
 
 - Generates conventional commit messages from staged diffs
