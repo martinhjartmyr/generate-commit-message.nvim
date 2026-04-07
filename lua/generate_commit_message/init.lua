@@ -1,8 +1,8 @@
 local M = {}
 
 M.config = {
-  summary_model = "llama3.1",
-  commit_model = "llama3.1",
+  summary_model = "gemma4",
+  commit_model = "gemma4",
   max_file_diff = 4000,
   auto_trigger = true,
   ollama_url = "http://localhost:11434/api/generate",

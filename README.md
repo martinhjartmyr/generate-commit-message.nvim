@@ -9,8 +9,8 @@ Generate git commit messages using Ollama's local or cloud LLMs.
 ## Features
 
 - Generates conventional commit messages from staged diffs
-- Runs via Ollama, self-hosted or cloud
-- Processes multiple files in parallel for speed
+- Runs via Ollama, self-hosted for privacy or cloud for speed
+- Processes multiple files in parallel
 - Auto-triggers when opening an empty commit buffer (optional)
 - Inserts the message directly into the commit buffer
 
@@ -19,7 +19,7 @@ Generate git commit messages using Ollama's local or cloud LLMs.
 - Neovim >= 0.10
 - [Ollama](https://ollama.com/) — local (Linux/macOS) or cloud API
 - `curl` installed (ships with most systems)
-- At least one Ollama model (e.g. `llama3.1`)
+- At least one Ollama model (e.g. `gemma4`)
 
 ## Installation
 
@@ -37,8 +37,8 @@ vim.pack.add({
 {
   "martinhjartmyr/generate-commit-message.nvim",
   opts = {
-    summary_model = "llama3.1",
-    commit_model = "llama3.1",
+    summary_model = "gemma4",
+    commit_model = "gemma4",
     auto_trigger = true,
   },
 }
@@ -51,8 +51,8 @@ use({
   "martinhjartmyr/generate-commit-message.nvim",
   config = function()
     require("generate_commit_message").setup({
-      summary_model = "llama3.1",
-      commit_model = "llama3.1",
+      summary_model = "gemma4",
+      commit_model = "gemma4",
       auto_trigger = true,
     })
   end,
@@ -72,8 +72,8 @@ MiniDeps.add({
 
 ```lua
 require("generate_commit_message").setup({
-  summary_model = "llama3.1",          -- Model for per-file summaries
-  commit_model = "llama3.1",           -- Model for the final commit message
+  summary_model = "gemma4",          -- Model for per-file summaries
+  commit_model = "gemma4",           -- Model for the final commit message
   max_file_diff = 4000,              -- Max characters per file diff (truncated if larger)
   auto_trigger = true,              -- Auto-generate on empty commit buffers
   ollama_url = "http://localhost:11434/api/generate",
@@ -96,8 +96,8 @@ Then configure the plugin:
 
 ```lua
 require("generate_commit_message").setup({
-  summary_model = "gpt-oss:120b",
-  commit_model = "gpt-oss:120b",
+  summary_model = "gemini-3-flash-preview",
+  commit_model = "gemini-3-flash-preview",
   ollama_url = "https://ollama.com/api/chat",
   -- api_key is read from $OLLAMA_API_KEY automatically
 })
@@ -106,7 +106,7 @@ require("generate_commit_message").setup({
 ## Quick Start
 
 1. **Ollama** — [docs.ollama.com/quickstart](https://docs.ollama.com/quickstart) (local or cloud)
-2. Pull a model: `ollama pull llama3.1` (or your preferred model)
+2. Pull a model: `ollama pull gemma4` (or your preferred model)
 3. Configure the plugin (see [Configuration](#configuration))
 
 ## Usage
