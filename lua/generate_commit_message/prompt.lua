@@ -28,23 +28,25 @@ function M.detect_type(diff)
 end
 
 function M.summary_prompt(diff)
-  return "Summarize this diff into key changes.\n\n"
-    .. "- Focus on intent\n"
-    .. "- Ignore noise\n"
-    .. "- Keep concise\n\n"
+  return "Analyze this diff and produce a concise technical summary.\n\n"
+    .. "For each logical change, describe:\n"
+    .. "- What changed and why\n"
+    .. "- Any breaking changes, migration needs, or side effects\n\n"
+    .. "Skip: formatting noise, boilerplate, mechanical refactors.\n\n"
     .. "Diff:\n"
     .. diff
 end
 
 function M.commit_prompt(summary, type)
-  return "Return EXACTLY ONE commit message. No alternatives, no variations, no examples.\n"
-    .. "No explanations, no intro text, no code fences, no markdown formatting.\n\n"
-    .. "First line must be exactly: "
+  return "Generate a conventional commit message.\n\n"
+    .. "Detected type: "
     .. type
-    .. ": <short summary>\n"
-    .. "Max 72 characters for the first line. Use all lowercase.\n\n"
-    .. "Then a blank line followed by bullet points using hyphens (-) for each change.\n\n"
-    .. "Synthesize ALL changes into this single message. Do not split into multiple messages.\n\n"
+    .. "\n"
+    .. "Format: type(scope): imperative summary (max 72 chars for subject)\n"
+    .. "Use lowercase for type and summary, but preserve acronyms/caps in scope.\n\n"
+    .. "Then a blank line followed by body explaining WHY this change was made.\n"
+    .. "Use bullet points (-) for specific changes.\n"
+    .. "If there are breaking changes, add 'BREAKING CHANGE:' in the body.\n\n"
     .. "Summary:\n"
     .. summary
 end
