@@ -95,7 +95,7 @@ function M.run(config)
     local job = ollama.query(
       config.ollama_url,
       config.commit_model,
-      prompt.commit_prompt(combined, commit_type),
+      config.commit_prompt(combined, commit_type),
       function(result)
         vim.schedule(function()
           cleanup()
@@ -142,7 +142,7 @@ function M.run(config)
       local job = ollama.query(
         config.ollama_url,
         config.summary_model,
-        prompt.summary_prompt(diff),
+        config.summary_prompt(diff),
         function(result)
           summaries[i] = result
           vim.defer_fn(process_next, 500)
@@ -168,7 +168,7 @@ function M.run(config)
       local job = ollama.query(
         config.ollama_url,
         config.summary_model,
-        prompt.summary_prompt(diff),
+        config.summary_prompt(diff),
         function(result)
           summaries[i] = result
           pending = pending - 1

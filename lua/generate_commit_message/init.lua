@@ -1,5 +1,7 @@
 local M = {}
 
+local prompt = require("generate_commit_message.prompt")
+
 M.config = {
   summary_model = "gemma4",
   commit_model = "gemma4",
@@ -8,6 +10,8 @@ M.config = {
   ollama_url = "http://localhost:11434/api/generate",
   api_key = nil,
   num_ctx = 8192,
+  summary_prompt = prompt.summary_prompt,
+  commit_prompt = prompt.commit_prompt,
 }
 
 function M.setup(opts)
